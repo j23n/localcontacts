@@ -16,10 +16,36 @@ targets:
     type: application
     platform: iOS
     sources:
-      - LocalContacts
+      - path: LocalContacts
+        excludes:
+          - Info.plist
+          - LocalContacts.entitlements
+    info:
+      path: LocalContacts/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: en
+        CFBundleDisplayName: LocalContacts
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSContactsUsageDescription: "LocalContacts syncs your vCard contacts to the system Contacts app so they appear in caller ID, QuickType, and the Apple Contacts app."
+        # No cryptography of any kind — skips App Store Connect's
+        # export compliance questionnaire.
+        ITSAppUsesNonExemptEncryption: false
     settings:
       base:
-        INFOPLIST_FILE: LocalContacts/Info.plist
         CODE_SIGN_ENTITLEMENTS: LocalContacts/LocalContacts.entitlements
         PRODUCT_BUNDLE_IDENTIFIER: com.j23n.localcontacts.app
         MARKETING_VERSION: "1.0.0"
